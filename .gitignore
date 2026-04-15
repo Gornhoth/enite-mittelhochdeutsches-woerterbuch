@@ -1,0 +1,40 @@
+# Local Android SDK path — machine-specific
+local.properties
+
+# Gradle build outputs and caches
+build/
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ IDEA / Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# JVM crash dumps
+*.hprof
+
+# Android generated files
+gen/
+out/
+
+# Kotlin incremental compilation
+**/.kotlin/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Release signing — NEVER commit
+release.jks
+*.keystore
+
+# Built artifacts
+*.apk
+*.aab
+
+# Misc
+.claude/
+.vscode/
+.idea/
