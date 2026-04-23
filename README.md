@@ -51,3 +51,9 @@ Die Wörterbuchdaten werden über die öffentliche API des [Wörterbuchnetzes](h
 ## Lizenz
 
 [MIT](LICENSE)
+
+## Unterstützen
+
+Wenn dir die App gefällt würde ich mich über eine kleine Unterstützung freuen ☕:
+
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/johannesschatteiner)
