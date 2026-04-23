@@ -1,0 +1,7 @@
+Erster Release von Enite – Mittelhochdeutsches Wörterbuch.
+
+• Stichwortsuche nach MHD-Lemmata im Lexer
+• Definitionssuche in mehreren Wörterbüchern (Lexer, BMZ, MWB, AWB, DWB u. a.)
+• Vollständige Wörterbuchartikel mit Formatierung
+• Autovervollständigung
+• Hell-, Dunkel- und Systemmodus
