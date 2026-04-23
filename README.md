@@ -1,9 +1,10 @@
 <div align="center">
-  <img src="src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" width="96">
+  <img src="src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" width="96" alt="Enite App Icon">
   <h1>Enite – Mittelhochdeutsches Wörterbuch</h1>
 
   [![GitHub Release](https://img.shields.io/github/v/release/Gornhoth/enite-mittelhochdeutsches-woerterbuch)](https://github.com/Gornhoth/enite-mittelhochdeutsches-woerterbuch/releases)
-  [![F-Droid](https://img.shields.io/f-droid/v/at.jschatteiner.enitemhdtranslator)](https://f-droid.org/packages/at.jschatteiner.enitemhdtranslator/)
+  [![Google Play](https://img.shields.io/badge/Google_Play-Enite-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=at.jschatteiner.enitemhdtranslator)
+  [![F-Droid](https://img.shields.io/f-droid/v/at.jschatteiner.enitemhdtranslator?logo=f-droid&logoColor=white)](https://f-droid.org/packages/at.jschatteiner.enitemhdtranslator/)
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 </div>
 
@@ -12,10 +13,10 @@ Android-App zur Suche in mittelhochdeutschen Wörterbüchern über die [Wörterb
 ## Screenshots
 
 <p>
-  <img src="screenshots/1.png" width="200">
-  <img src="screenshots/2.png" width="200">
-  <img src="screenshots/3.png" width="200">
-  <img src="screenshots/4.png" width="200">
+  <img src="screenshots/1.png" width="200" alt="Screenshot Stichwortsuche">
+  <img src="screenshots/2.png" width="200" alt="Screenshot Autovervollständigung">
+  <img src="screenshots/3.png" width="200" alt="Screenshot Suchergebnisse">
+  <img src="screenshots/4.png" width="200" alt="Screenshot Wörterbuchartikel">
 </p>
 
 ## Funktionen
