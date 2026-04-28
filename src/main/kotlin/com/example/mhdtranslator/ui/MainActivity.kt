@@ -733,6 +733,15 @@ fun AboutDialog(onDismiss: () -> Unit) {
     val privacyUrl = "$githubUrl/blob/main/PRIVACY.md"
     val donateUrl  = "https://ko-fi.com/johannesschatteiner"
 
+    val versionName = remember(context) {
+        try {
+            val pInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            pInfo.versionName ?: "Unbekannt"
+        } catch (e: Exception) {
+            "Unbekannt"
+        }
+    }
+
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
@@ -743,6 +752,11 @@ fun AboutDialog(onDismiss: () -> Unit) {
         title = { Text("Über Enite") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                Text(
+                    "Version $versionName",
+                    style = MaterialTheme.typography.bodyMedium,
+                    fontWeight = FontWeight.Bold
+                )
                 Text(
                     "Entwickelt von Johannes Schatteiner",
                     style = MaterialTheme.typography.bodyMedium,
