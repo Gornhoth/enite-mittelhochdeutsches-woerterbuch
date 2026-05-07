@@ -60,6 +60,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.AnnotatedString
@@ -561,6 +564,14 @@ fun EntryRow(entry: LexerEntry, showKwic: Boolean) {
                 )
             }
         }
+        Icon(
+            imageVector = OpenInNewIcon,
+            contentDescription = "Im Browser öffnen",
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier
+                .padding(start = 8.dp, top = 2.dp)
+                .size(14.dp),
+        )
     }
 }
 
@@ -568,9 +579,7 @@ fun EntryRow(entry: LexerEntry, showKwic: Boolean) {
 fun ArticleEntryRow(entry: LexerEntry) {
     val context  = LocalContext.current
     var expanded by remember(entry.wbnetzId) { mutableStateOf(false) }
-    // Assume expandable for any entry with article text; corrected downward by onTextLayout
-    // if the text turns out to be short (< 3 lines). This avoids relying on hasVisualOverflow
-    // or hidden measurement passes, both of which are unreliable with TextOverflow.Ellipsis.
+    // Assume expandable until the first layout pass tells us otherwise.
     var isLong   by remember(entry.wbnetzId) { mutableStateOf(entry.kwicText != null) }
 
     val linkColor = MaterialTheme.colorScheme.primary
@@ -599,9 +608,10 @@ fun ArticleEntryRow(entry: LexerEntry) {
             maxLines = if (expanded) Int.MAX_VALUE else 3,
             overflow = TextOverflow.Ellipsis,
             onTextLayout = { result ->
-                // lineCount is capped at maxLines (3) when text is truncated, so < 3 reliably
-                // means the text fits completely — no expand button needed.
-                if (!expanded && result.lineCount < 3) isLong = false
+                // hasVisualOverflow is the only reliable signal: when text fills exactly 3
+                // lines without truncation, lineCount is 3 (same as the truncated case), so
+                // a lineCount < 3 check leaves the "mehr" button visible with nothing to expand.
+                if (!expanded && !result.hasVisualOverflow) isLong = false
             },
         )
 
@@ -633,6 +643,14 @@ fun ArticleEntryRow(entry: LexerEntry) {
                             color     = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
+                    Icon(
+                        imageVector = OpenInNewIcon,
+                        contentDescription = "Im Browser öffnen",
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier
+                            .padding(start = 6.dp)
+                            .size(12.dp),
+                    )
                 }
                 if (isLong || expanded) {
                     Text(
@@ -867,6 +885,45 @@ fun ErrorText(message: String) {
             style = MaterialTheme.typography.bodyMedium
         )
     }
+}
+
+private val OpenInNewIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "OpenInNew",
+        defaultWidth = 24.dp,
+        defaultHeight = 24.dp,
+        viewportWidth = 24f,
+        viewportHeight = 24f,
+    ).apply {
+        path(fill = SolidColor(Color.Black)) {
+            moveTo(19f, 19f)
+            horizontalLineTo(5f)
+            verticalLineTo(5f)
+            horizontalLineToRelative(7f)
+            verticalLineTo(3f)
+            horizontalLineTo(5f)
+            curveTo(3.89f, 3f, 3f, 3.9f, 3f, 5f)
+            verticalLineToRelative(14f)
+            curveToRelative(0f, 1.1f, 0.89f, 2f, 2f, 2f)
+            horizontalLineToRelative(14f)
+            curveToRelative(1.1f, 0f, 2f, -0.9f, 2f, -2f)
+            verticalLineToRelative(-7f)
+            horizontalLineToRelative(-2f)
+            verticalLineToRelative(7f)
+            close()
+            moveTo(14f, 3f)
+            verticalLineToRelative(2f)
+            horizontalLineToRelative(3.59f)
+            lineToRelative(-9.83f, 9.83f)
+            lineToRelative(1.41f, 1.41f)
+            lineTo(19f, 6.41f)
+            verticalLineTo(10f)
+            horizontalLineToRelative(2f)
+            verticalLineTo(3f)
+            horizontalLineToRelative(-7f)
+            close()
+        }
+    }.build()
 }
 
 @Composable

@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.application") version "9.2.0"
+    id("com.android.application") version "9.2.1"
     // Compose Compiler is a standalone plugin in Kotlin 2.0+
-    id("org.jetbrains.kotlin.plugin.compose") version "2.3.20"
+    id("org.jetbrains.kotlin.plugin.compose") version "2.3.21"
 }
 
 android {
@@ -13,7 +13,7 @@ android {
         minSdk = 23
         targetSdk = 37
         versionCode = 2
-        versionName = "1.0.1"
+        versionName = "1.1.0"
     }
 
     signingConfigs {
