@@ -47,6 +47,29 @@ android {
     }
 }
 
+val releaseArtifactName = "Enite-Mittelhochdeutsches-Woerterbuch"
+
+androidComponents {
+    onVariants(selector().withBuildType("release")) { variant ->
+        variant.outputs.forEach { output ->
+            output.outputFileName.set("$releaseArtifactName.apk")
+        }
+    }
+}
+
+tasks.matching { it.name == "bundleRelease" }.configureEach {
+    doLast {
+        val bundleDir = layout.buildDirectory.dir("outputs/bundle/release").get().asFile
+        val target = File(bundleDir, "$releaseArtifactName.aab")
+        bundleDir.listFiles()?.forEach { file ->
+            if (file.extension == "aab" && file != target) {
+                if (target.exists()) target.delete()
+                file.renameTo(target)
+            }
+        }
+    }
+}
+
 dependencies {
     // Jetpack Compose BOM – keeps all Compose versions aligned
     val composeBom = platform("androidx.compose:compose-bom:2024.10.01")
